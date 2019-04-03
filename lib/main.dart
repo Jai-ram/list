@@ -52,25 +52,36 @@ Widget build(BuildContext context){
       itemBuilder: (BuildContext context, i){
         return new ListTile(
           title: new Text(data[i]["name"]),
-          subtitle: new Text(data[i]["source"]),
-          
-          //leading: new CircleAvatar(
-            //backgroundImage: new NetworkImage(data[i]["squareImage"]),),
-          onTap: (){
-            Navigator.push(
-              context,
-              new MaterialPageRoute(
-                builder: (BuildContext context) =>
-                new SecondPage(data[i]))
-              );
+          subtitle: new Text(
+            (data[i]["title"]!=null) ? data[i]["title"].toString().toUpperCase() : "UNKNOWN"
+          ),
+          leading: new CircleAvatar(
+          backgroundImage: new NetworkImage(getPhotoURL(data[i]["squareImage"])),),
+          trailing: new Text(data[i]["position"].toString()),
+                      onTap: (){
+                        Navigator.push(
+                          context,
+                          new MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                            new SecondPage(data[i]))
+                          );
+                        
             
-
-          },
-        );
-      }
-    )
-  );
-}
+                      },
+                    );
+                  }
+                )
+              );
+            }
+            
+              String getPhotoURL(String s) {
+                 if(s!=null){
+                    return "https:"+s;
+                      }else{
+                       return "https://specials-images.forbesimg.com/imageserve/5ab944eda7ea432fbc1d2d9c/416x416.jpg?background=000000&cropX1=0&cropX2=400&cropY1=0&cropY2=400";
+                               }
+                  
+              }
 }
 
 class SecondPage extends StatelessWidget{
@@ -79,25 +90,257 @@ class SecondPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) => new Scaffold(
     appBar: new AppBar(
-      title: new Text('Image') 
+      title: new Text('Information') 
     ),
-    body: new Center(
-      child: new Container(
-        width: 1200.0,
-        height: 1200.0,
+    body:  Center(
+      child: Column(
+      children:<Widget>[
+        
+        
+      new Container(
+        width: 150.0,
+        height: 150.0,
+        
+              
         decoration: new BoxDecoration(
           color: const Color(0xff),
           image: new DecorationImage(
-            image: new NetworkImage(data["squareImage"]),
-            fit: BoxFit.cover,
-          ),
-          borderRadius: new BorderRadius.all(new Radius.circular(600.0)),
-          border: new Border.all(
-            color: Colors.lightBlueAccent,
-            width: 4.0
-          )
-        ),
-      ),
-    ),
-  );
+            image: new NetworkImage(getPhotoURL(data["squareImage"])),
+                        fit: BoxFit.cover,
+                      ),
+                      borderRadius: new BorderRadius.all(new Radius.circular(75.0)),
+                      border: new Border.all(
+                        color: Colors.lightBlueAccent,
+                        width: 4.0
+                      )
+                    ),
+                    
+                  ),
+                
+                  Row( children: <Widget>[
+                    new Expanded(
+                      child:Padding(
+                        padding: const EdgeInsets.only(bottom:5.0,top:5.0),
+                      child: new Container(
+                        height:30.0 ,
+                        decoration: new BoxDecoration(
+                          borderRadius: new BorderRadius.circular(50.0),
+                          color: Colors.lightBlueAccent,
+                        ),
+                        child: new Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                             Text("Name:"+data["name"], style: new TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                          ],
+                        ),
+                      ),
+                    )
+                    )
+                  ],),
+                   Row(children: <Widget>[
+                    new Expanded(
+                      child:Padding(
+                        padding: const EdgeInsets.only(bottom:5.0),
+                      child: new Container(
+                        height:30.0 ,
+                        decoration: new BoxDecoration(
+                          borderRadius: new BorderRadius.circular(50.0),
+                          color: Colors.lightBlueAccent,
+                        ),
+                        child: new Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                             Text((data["position"]!=null) ? "Posiition:"+data["position"].toString():"Position:"+"Unknown", style: new TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                          ],
+                        ),
+                      ),
+                    )
+                    )
+                  ],),
+                   Row(children: <Widget>[
+                    new Expanded(
+                      child:Padding(
+                        padding: const EdgeInsets.only(bottom:5.0),
+                      child: new Container(
+                        height:30.0 ,
+                        decoration: new BoxDecoration(
+                          borderRadius: new BorderRadius.circular(50.0),
+                          color: Colors.lightBlueAccent,
+                        ),
+                        child: new Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                             Text((data["title"]!=null) ? "Title:"+data["title"]:"Title:"+"Unknown", style: new TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                          ],
+                        ),
+                      ),
+                    )
+                    )
+                  ],),
+                   Row(children: <Widget>[
+                    new Expanded(
+                      child:Padding(
+                        padding: const EdgeInsets.only(bottom:5.0),
+                      child: new Container(
+                        height:30.0 ,
+                        decoration: new BoxDecoration(
+                          borderRadius: new BorderRadius.circular(50.0),
+                          color: Colors.lightBlueAccent,
+                        ),
+                        child: new Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                             Text((data["gender"]=="M") ? "Gender:Male":"Gender:Female", style: new TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                          ],
+                        ),
+                      ),
+                    )
+                    )
+                  ],),
+                   Row(children: <Widget>[
+                    new Expanded(
+                      child:Padding(
+                        padding: const EdgeInsets.only(bottom:5.0),
+                        
+                      child: new Container(
+                        height:30.0 ,
+                        decoration: new BoxDecoration(
+                          borderRadius: new BorderRadius.circular(50.0),
+                          color: Colors.lightBlueAccent,
+                        ),
+                        child: new Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                             Text((data["age"]!=null) ? "Age:"+data["age"].toString():"Age:"+"Unknown", style: new TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                          ],
+                        ),
+                      ),
+                    )
+                    )
+                  ],),
+                   Row(children: <Widget>[
+                    new Expanded(
+                      child:Padding(
+                        padding: const EdgeInsets.only(bottom:5.0),
+                      child: new Container(
+                        height:30.0 ,
+                        decoration: new BoxDecoration(
+                          borderRadius: new BorderRadius.circular(50.0),
+                          color: Colors.lightBlueAccent,
+                        ),
+                        child: new Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                              Text((data["country"]!=null) ? "Country:"+data["country"]:"Country:"+"Unknown", style: new TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                          ],
+                        ),
+                      ),
+                    )
+                    )
+                  ],),
+                   Row(children: <Widget>[
+                    new Expanded(
+                      child:Padding(
+                        padding: const EdgeInsets.only(bottom:5.0),
+                      child: new Container(
+                        height:30.0 ,
+                        decoration: new BoxDecoration(
+                          borderRadius: new BorderRadius.circular(50.0),
+                          color: Colors.lightBlueAccent,
+                        ),
+                        child: new Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                                Text((data["worth"]!=null) ? "Worth:"+data["worth"].toString():"Worth:"+"Unknown", style: new TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                          ],
+                        ),
+                      ),
+                    )
+                    )
+                  ],),
+                   Row(children: <Widget>[
+                    new Expanded(
+                      child:Padding(
+                        padding: const EdgeInsets.only(bottom:5.0),
+                      child: new Container(
+                        height:30.0 ,
+                        decoration: new BoxDecoration(
+                          borderRadius: new BorderRadius.circular(50.0),
+                          color: Colors.lightBlueAccent,
+                        ),
+                        child: new Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                              Text((data["source"]!=null) ? "Source:"+data["source"].toString():"Source:"+"Unknown", style: new TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                          ],
+                        ),
+                      ),
+                    )
+                    )
+                  ],),
+                   Row(children: <Widget>[
+                    new Expanded(
+                      child:Padding(
+                        padding: const EdgeInsets.only(bottom:5.0),
+                      child: new Container(
+                        height:30.0 ,
+                        decoration: new BoxDecoration(
+                          borderRadius: new BorderRadius.circular(50.0),
+                          color: Colors.lightBlueAccent,
+                        ),
+                        child: new Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                              Text((data["industry"]!=null) ? "Industry:"+data["industry"]:"Industry:"+"Unknown", style: new TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                          ],
+                        ),
+                      ),
+                    )
+                    )
+                  ],),
+                   Row(
+                     children: <Widget>[
+                    new Expanded(
+                      child:Padding(
+                        padding: const EdgeInsets.only(bottom:5.0),
+                      child: new Container(
+                        height:30.0 ,
+                        decoration: new BoxDecoration(
+                          borderRadius: new BorderRadius.circular(50.0),
+                          color: Colors.lightBlueAccent,
+                        ),
+                        child: new Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                             Text((data["government"]=="false") ? "Government:Yes":"Government:No", style: new TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                          ],
+                        ),
+                      ),
+                      )
+                    )
+                  ],),
+                 
+                  
+                  
+                  
+                 
+                
+              
+                
+                 
+                  
+
+      ]
+                ),
+    )
+              );
+            
+             String getPhotoURL(String s) {
+                 if(s!=null){
+                    return "https:"+s;
+                      }else{
+                       return "https://specials-images.forbesimg.com/imageserve/5ab944eda7ea432fbc1d2d9c/416x416.jpg?background=000000&cropX1=0&cropX2=400&cropY1=0&cropY2=400";
+                               }
+                  
+              }
 }
