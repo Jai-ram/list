@@ -45,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
 Widget build(BuildContext context){
   return new Scaffold(
     appBar: new AppBar(
-      title: new Text('List')
+      title: new Text('Billionares')
       ),
     body: new ListView.builder(
       itemCount: data==null?0:data.length,
@@ -90,7 +90,7 @@ class SecondPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) => new Scaffold(
     appBar: new AppBar(
-      title: new Text('Information') 
+      title: new Text(data['name']) 
     ),
     body:  Center(
       child: Column(
@@ -130,7 +130,7 @@ class SecondPage extends StatelessWidget{
                         child: new Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                             Text("Name:"+data["name"], style: new TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                             Text("Name:"+data["name"], style: new TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
                           ],
                         ),
                       ),
@@ -150,7 +150,7 @@ class SecondPage extends StatelessWidget{
                         child: new Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                             Text((data["position"]!=null) ? "Posiition:"+data["position"].toString():"Position:"+"Unknown", style: new TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                             Text((data["position"]!=null) ? "Position:"+data["position"].toString():"Position:"+"Unknown", style: new TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
                           ],
                         ),
                       ),
@@ -170,7 +170,7 @@ class SecondPage extends StatelessWidget{
                         child: new Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                             Text((data["title"]!=null) ? "Title:"+data["title"]:"Title:"+"Unknown", style: new TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                             Text((data["title"]!=null) ? "Title:"+data["title"]:"Title:"+"Unknown", style: new TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
                           ],
                         ),
                       ),
@@ -211,7 +211,7 @@ class SecondPage extends StatelessWidget{
                         child: new Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                             Text((data["age"]!=null) ? "Age:"+data["age"].toString():"Age:"+"Unknown", style: new TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                             Text((data["age"]!=null) ? "Age:"+data["age"].toString():"Age:"+"Unknown", style: new TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
                           ],
                         ),
                       ),
@@ -251,7 +251,7 @@ class SecondPage extends StatelessWidget{
                         child: new Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                                Text((data["worth"]!=null) ? "Worth:"+data["worth"].toString():"Worth:"+"Unknown", style: new TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                                Text((data["worth"]!=null) ? "Worth:"+data["worth"].toString()+"B \$":"Worth:"+"Unknown", style: new TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
                           ],
                         ),
                       ),
@@ -291,34 +291,14 @@ class SecondPage extends StatelessWidget{
                         child: new Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                              Text((data["industry"]!=null) ? "Industry:"+data["industry"]:"Industry:"+"Unknown", style: new TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                              Text((data["industry"]!=null) ? "Industry:"+data["industry"]:"Industry:"+"Unknown", style: new TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
                           ],
                         ),
                       ),
                     )
                     )
                   ],),
-                   Row(
-                     children: <Widget>[
-                    new Expanded(
-                      child:Padding(
-                        padding: const EdgeInsets.only(bottom:5.0),
-                      child: new Container(
-                        height:30.0 ,
-                        decoration: new BoxDecoration(
-                          borderRadius: new BorderRadius.circular(50.0),
-                          color: Colors.lightBlueAccent,
-                        ),
-                        child: new Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                             Text((data["government"]=="false") ? "Government:Yes":"Government:No", style: new TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
-                          ],
-                        ),
-                      ),
-                      )
-                    )
-                  ],),
+                  
                  
                   
                   
